@@ -1,0 +1,19 @@
+spring:
+    application:
+        name: spring-k8s
+app:
+  k8s:
+    namespace: default
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "prometheus, info, health"
+      base-path: /
+      path-mapping:
+        prometheus: /metrics
+    info:
+      enabled: true
+    health:
+      show-details: always
