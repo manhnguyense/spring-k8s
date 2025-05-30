@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: spring-k8s
+    namespace: default
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: spring-k8s
+    template:
+        metadata:
+            labels:
+                app: spring-k8s
+        spec:
+            containers:
+                -   name: spring-app
+                    image: simonnguyen/springk8s:latest
+                    imagePullPolicy: Always
+                    ports:
+                        -   containerPort: 8080
+                    env:
+                        -   name: APP_ENV
+                            valueFrom:
+                                configMapKeyRef:
+                                    name: spring-env
+                                    key: APP_ENV
