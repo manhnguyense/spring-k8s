@@ -1,5 +1,6 @@
 #!/bin/sh
 
-f="/sys/fs/cgroup/memory/memory.limit_in_bytes"
-exec java -jar spring-k8s.jar
-
+CONFIG_FILE="/config/${APP_ENV}.yaml"
+exec java \
+  -Dspring.config.location=file:$CONFIG_FILE \
+  -jar spring-k8s.jar
