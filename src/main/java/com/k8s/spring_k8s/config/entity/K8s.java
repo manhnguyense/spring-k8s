@@ -7,4 +7,5 @@ import java.io.Serializable;
 @Data
 public class K8s implements Serializable {
     private String namespace;
+    private String env;
 }

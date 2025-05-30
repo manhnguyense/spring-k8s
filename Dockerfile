@@ -1,6 +1,8 @@
 # --- Stage 1: Build with Maven ---
 FROM maven:3.9.5-eclipse-temurin-17 AS builder
-
+# Set environment variable for Maven to run in non-interactive mode
+ARG APP_ENV=dev
+ENV APP_ENV=${APP_ENV}
 # Set working directory
 WORKDIR /app
 
@@ -23,6 +25,7 @@ WORKDIR /app
 # Copy jar from builder stage
 COPY --from=builder /app/target/*.jar spring-k8s.jar
 
+COPY config /app/config
 # Copy entrypoint.sh script
 COPY entrypoint.sh /app/entrypoint.sh
 
