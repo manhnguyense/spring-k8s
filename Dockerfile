@@ -1,6 +1,8 @@
 # --- Stage 1: Build with Maven ---
 FROM maven:3.9.5-eclipse-temurin-17 AS builder
-
+# Set environment variable for Maven to run in non-interactive mode
+ARG APP_ENV=dev
+ENV APP_ENV=${APP_ENV}
 # Set working directory
 WORKDIR /app
 

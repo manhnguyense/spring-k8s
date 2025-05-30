@@ -1,5 +1,3 @@
 #!/bin/sh
 
-f="/sys/fs/cgroup/memory/memory.limit_in_bytes"
-exec java -jar spring-k8s.jar
-
+exec java -Dspring.profiles.active=$APP_ENV -jar spring-k8s.jar
